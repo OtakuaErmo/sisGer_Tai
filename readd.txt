@@ -1,1 +1,17 @@
 adicionando ao git
+
+para clonar:
+
+dentro da pasta que quiser:
+
+::git clone LINK::
+
+para atualizar o código que está na sua máquina com o que tem no git: 
+
+::git pull origin::
+
+para fazer um envio ao git:
+
+::git add --all::
+::git commit -m "escreva o pq da mudanca"::
+::git push origin master::
