@@ -6,7 +6,7 @@ dentro da pasta que quiser:
 
 ::git clone LINK::
 
-para atualizar o código que está na sua máquina com o que tem no git: 
+para atualizar o codigo que esta na sua maquina com o que tem no git: 
 
 ::git pull origin::
 
