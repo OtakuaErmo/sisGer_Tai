@@ -16,7 +16,6 @@
             <td><a href='view/multa/listarMultaView.php'>Multa</a></td>
         </tr>  
     </table>";
- 
     ?>
 </body>
 
@@ -25,7 +24,7 @@
         background-color: #CCC;
     }   
     .table{
-
+        font-size:30px;
         position: absolute;
         top: 50%;
         left: 50%;

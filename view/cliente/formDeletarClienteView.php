@@ -2,7 +2,6 @@
 
 //para que os metodos fiquem visiveis
 include '../../control/ClienteController.php';
-include '../../model/MunicipioModel.php';
 include '../../lib/util.php';
 
 ?>

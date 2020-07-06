@@ -16,6 +16,7 @@ include '../../lib/util.php';
 <body>
 <a href='../../index.php'><button>Tela Inicial</button></a></br>
 </br>
+
     <!--    formulario com o botao para chamar o arquivo formCliente -->
     <form action="formClienteView.php" method="POST">
         <label>Cadastrar Cliente: </label>
