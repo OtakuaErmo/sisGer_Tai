@@ -8,4 +8,4 @@ class Config
     const BD_USUARIO = "root";
     const BD_SENHA = "";
     const BD_CHARSET = "utf8mb4";
-}
+}  
