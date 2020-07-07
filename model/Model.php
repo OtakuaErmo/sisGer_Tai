@@ -1,4 +1,5 @@
 <?php
+
 include '../../Config.php';
 
 class Model
@@ -6,16 +7,17 @@ class Model
 
     private static $table;
 
+    //setando a tabela
     public static function setTable($nomeTabela)
     {
         self::$table = $nomeTabela;
     }
 
+    //get tabela
     public static function getTable()
     {
         return self::$table;
     }
-
 
     //metodo para conexao com o banco de dados
     public static function connection()

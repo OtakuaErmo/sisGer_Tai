@@ -1,9 +1,8 @@
 <?php
-// inclui o arquivo BD.php dentro deste arquivo 
-//para que seus metodos fiquem visiveis
+
+//include
 include '../../control/ClienteController.php';
 include '../../model/MunicipioModel.php';
-include '../../lib/util.php';
 
 ?>
 
@@ -24,14 +23,13 @@ include '../../lib/util.php';
     $objClienteController = new ClienteController();
 
     if (!empty($_POST)) {
-        //chama o metodo UPDATE recebendo os dados do usuário através do metodo $_POST
+        //chama o metodo UPDATE recebendo os dados através do metodo $_POST
         $objClienteController->update($_POST);
-        //metodo header faz uma chamada para a tela de listagem
-        //depois que realizou a edicao
+
         header("Location: listarClienteView.php");
     }   
 
-    //Busca os dados no banco de dados pelo ID da URL passando como parametro no metodo FIND
+
     $objCliente = $objClienteController->find($_GET['id']);
 
     $objMunicipioModel = new MunicipioModel();
@@ -65,7 +63,8 @@ include '../../lib/util.php';
             <?php
             //percorre os municipios 
             foreach ($resultMunicipios as $itens) {
-                // operador ternario IF para verificar se o id do municipio da listagem é o mesmo ID do campo municipio_id do cliente
+                // operador ternario IF para verificar se o id do municipio da listagem é o mesmo ID
+                // do campo municipio_id do cliente
                 $selected = ($itens['id'] == $objCliente->municipio_id ? "selected" : "");
                 // se a operação a cima for verdadeiro ele vai setar o municipio correto na Tag Select
                 echo "<option value='" . $itens['id'] . "' " . $selected . " >" .
@@ -84,14 +83,16 @@ include '../../lib/util.php';
     <a href="listarClienteView.php"><button>Voltar</button></a>
     </div>
 </body>
-<style>
-    body{
-        background-color: #CCC;
-    }
-    .center{
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 0);  
-    } 
-</style>
+    <!-- css -->
+    <style>
+        body{
+            background-color: #CCC;
+        }
+        .center{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);  
+        } 
+    </style>
+
 </html>

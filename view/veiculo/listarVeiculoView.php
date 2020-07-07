@@ -1,9 +1,7 @@
 <?php
-
+    //includes
 include '../../control/VeiculoController.php';
-//include '../../model/MunicipioModel.php';
 include '../../model/ClienteModel.php';
-include '../../lib/util.php';
 
 ?>
 
@@ -15,81 +13,86 @@ include '../../lib/util.php';
     <title>Veículo</title>
 </head>
 <body>
-<div class='center'>
-<a href='../../index.php'><button>Tela Inicial</button></a></br>
-</br>
+    <div class='center'>
+    <!-- caso queira voltar a tela inicial -->
+    <a href='../../index.php'><button>Tela Inicial</button></a></br>
+    </br>
 
-    <!--    formulario com o botao para chamar o arquivo formCliente -->
-    <form action="formVeiculoView.php" method="POST">
-        <label>Cadastrar Veículo: </label>
-        <input type="submit" value="Novo">
-    </form></br>
-    <form action="listarVeiculoView.php" method="POST">
-        <label>Buscar: </label>
-        <input type="text" name="valor" />
-        <select name="tipo">
-            <option value="placa">Placa</option>
-            <option value="tipo_veiculo">Tipo</option>
-            <option value="fabricante">Fabricante</option>
-            <option value="modelo">Modelo</option>
-        </select>
-        <input type="submit" value="Buscar">
-    </form>
-    <?php
+        <!-- formulario comeco -->
+        <form action="formVeiculoView.php" method="POST">
+            <label>Cadastrar Veículo: </label>
+            <input type="submit" value="Novo">
+        </form></br>
+        <form action="listarVeiculoView.php" method="POST">
+            <label>Buscar: </label>
+            <input type="text" name="valor" />
+            <select name="tipo">
+                <option value="placa">Placa</option>
+                <option value="tipo_veiculo">Tipo</option>
+                <option value="fabricante">Fabricante</option>
+                <option value="modelo">Modelo</option>
+            </select>
+            <input type="submit" value="Buscar">
+        </form>
+        <?php
 
-    $objVeiculoController = new VeiculoController();
+        $objVeiculoController = new VeiculoController();
 
-    if (!empty($_POST['valor'])) {
-        $result = $objVeiculoController->search($_POST);
-    } else {
-        //Faz a chamada do metodo selectAll para conecta com o Banco de Dados
-        $result = $objVeiculoController->index();
-    }
-    
-    $objClienteModel = new ClienteModel();
-    //monta uma tabela e lista os dados atraves do foreach
-    echo "
-<table style=''>
-<tr>
-  <th>ID</th>
-  <th>Placa</th>
-  <th>Tipo</th>
-  <th>Fabricante</th>
-  <th>Modelo</th>
-  <th>Cliente</th>
-  <th>Ação</th>
-</tr>";
-    foreach ($result as $item) {
-        $objCliente = $objClienteModel::find($item['cliente_id']);
+        if (!empty($_POST['valor'])) {
+
+            $result = $objVeiculoController->search($_POST);
+        
+        } else {
+            //conecta com o banco de dados
+            $result = $objVeiculoController->index();
+        }
+        
+        $objClienteModel = new ClienteModel();
+
+        //tabela com listagem de dados com foreach
         echo "
-    <tr>
-      <td>" . $item['id'] . "</td>
-      <td>" . $item['placa'] . "</td>
-      <td>" . $item['tipo_veiculo'] . "</td>
-      <td>" . $item['fabricante'] . "</td>
-      <td>" . $item['modelo'] . "</td>
-      <td>" . $objCliente->nome  . "</td>
-      <td><a href='formEditarVeiculoView.php?id=" . $item['id'] . "'><button>Editar</button></a></td>
-      <td><a href='formDeletarVeiculoView.php?id=" . $item['id'] . "'><button>Deletar</button></a></td>
-    </tr>
-    ";
+        <table style=''>
+        <tr>
+        <th>ID</th>
+        <th>Placa</th>
+        <th>Tipo</th>
+        <th>Fabricante</th>
+        <th>Modelo</th>
+        <th>Cliente</th>
+        <th>Ação</th>
+        </tr>";
+        foreach ($result as $item) {
+        $objCliente = $objClienteModel::find($item['cliente_id']);
+            echo "
+        <tr>
+        <td>" . $item['id'] . "</td>
+        <td>" . $item['placa'] . "</td>
+        <td>" . $item['tipo_veiculo'] . "</td>
+        <td>" . $item['fabricante'] . "</td>
+        <td>" . $item['modelo'] . "</td>
+        <td>" . $objCliente->nome  . "</td>
+        <td><a href='formEditarVeiculoView.php?id=" . $item['id'] . "'><button>Editar</button></a></td>
+        <td><a href='formDeletarVeiculoView.php?id=" . $item['id'] . "'><button>Deletar</button></a></td>
+        </tr>
+        ";
         //a ultima linha foi criado um link para passar o parameto do id para a pagina formEditarCliente
-    }
-    echo "</table>";
+        }
+        echo "</table>";
 
-    ?>
-</div>
+        ?>
+
+    </div>
 </body>
-<style>
-    body{
-        background-color: #CCC;
-
-    }
-    .center{
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 0);  
-    } 
-</style>
+        <!-- css -->
+    <style>
+        body{
+            background-color: #CCC;
+        }
+        .center{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+    </style>
 
 </html>

@@ -1,9 +1,8 @@
 <?php
-// inclui o arquivo BD.php dentro deste arquivo 
-//para que seus metodos fiquem visiveis
+
+//include
 include '../../control/ClienteController.php';
 include '../../model/MunicipioModel.php';
-include '../../lib/util.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,63 +16,64 @@ include '../../lib/util.php';
 </head>
 
 <body>
-<div class='center'>
-    <?php
+    <div class='center'>
+        <?php
 
-    $objClienteController = new ClienteController();
+        $objClienteController = new ClienteController();
 
-    if (!empty($_POST)) {
-        //chama o metodo INSERT recebendo os dados do usuário através do metodo $_POST
-        $objClienteController->create($_POST);
-    }  
+        if (!empty($_POST)) {
 
-    $objMunicipioModel = new MunicipioModel();
-    $resultMunicipios =  $objMunicipioModel::selectAll();
+            //chama o metodo INSERT recebendo os dados do metodo $_POST
+            $objClienteController->create($_POST);
 
-    ?>
+        }  
 
-    <!-- propriedade action faz a chamada do BD.php para pegar o valor do form
-        o restante e um formulario comum usando o metodo POST
-    -->
-    <form action="formClienteView.php" method="POST">
-        <label>Nome</label>
-        <input type="text" name="nome"> <br>
+        $objMunicipioModel = new MunicipioModel();
+        $resultMunicipios =  $objMunicipioModel::selectAll();
 
-        <label>CPF</label>
-        <input type="text" name="cpf"> <br>
+        ?>
 
-        <label>Telefone</label>
-        <input type="text" name="telefone"> <br>
+        <form action="formClienteView.php" method="POST">
+            <label>Nome</label>
+            <input type="text" name="nome"> <br>
 
-        <label>E-mail</label>
-        <input type="text" name="email"> <br>
+            <label>CPF</label>
+            <input type="text" name="cpf"> <br>
 
-        <label>Município</label>
-        <select name="municipio_id">
-            <?php
-            //listagem dos municipios
-            foreach ($resultMunicipios as $itens) {
-                echo "<option value='" . $itens['id'] . "'>" . $itens['nome'] . "</option>";
-            }
-            ?>
-        </select>
-        <br>
-        <label>Ano de Nascimento</label>
-        <input type="date" name="data_nascimento"> <br>
+            <label>Telefone</label>
+            <input type="text" name="telefone"> <br>
 
-        <input type="submit" value="Enviar">
-    </form>
-    <a href="listarClienteView.php"><button>Voltar</button></a>
+            <label>E-mail</label>
+            <input type="text" name="email"> <br>
+
+            <label>Município</label>
+            <select name="municipio_id">
+                <?php
+                //listagem dos municipios
+                foreach ($resultMunicipios as $itens) {
+                    echo "<option value='" . $itens['id'] . "'>" . $itens['nome'] . "</option>";
+                }
+                ?>
+            </select>
+            <br>
+            <label>Ano de Nascimento</label>
+            <input type="date" name="data_nascimento"> <br>
+
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="listarClienteView.php"><button>Voltar</button></a>
     </div>
 </body>
-<style>
-    body{
-        background-color: #CCC;
-    }
-    .center{
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 0);  
-    } 
-</style>
+    <!-- css -->
+    <style>
+        body{
+            background-color: #CCC;
+        }
+        .center{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);  
+        } 
+    </style>
+    
 </html>

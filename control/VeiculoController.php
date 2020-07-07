@@ -18,6 +18,7 @@ class VeiculoController
         return $objeto;
     }
 
+    //insert
     public function create($dados)
     {
 
@@ -35,6 +36,8 @@ class VeiculoController
             echo "<script>alert('Alguns campos não foram informados, tente novamente')</script>";
         } 
     }
+
+    //update
     public function update($dados)
     {
         if (
@@ -49,6 +52,8 @@ class VeiculoController
             echo "<script>alert('Alguns campos não foram informados, tente novamente')</script>";
         }
     }
+
+    //delete
     public function remove($id)
     {
         $objModel = $this->model::find($id);
@@ -61,12 +66,16 @@ class VeiculoController
             echo "<script>window.location='listarVeiculoView.php'</script>";
         }
     }
+
+    //select
     public function search($dados)
     {
         $result = $this->model::search($dados);
 
         return $result;
     }
+
+    //select
     public function find($dados){
 
         $result = $this->model::find($dados);

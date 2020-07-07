@@ -18,6 +18,7 @@ class ClienteController
         return $objeto;
     }
 
+    //insert
     public function create($dados)
     {
 
@@ -27,7 +28,6 @@ class ClienteController
             !empty($dados['municipio_id']) && !empty($dados['data_nascimento'])
         ) {
 
-
             $this->model::insert($dados);
 
             echo "<script>alert('Registro inserido com sucesso!')</script>";
@@ -36,6 +36,8 @@ class ClienteController
             echo "<script>alert('Alguns campos não foram informados, tente novamente')</script>";
         }
     }
+
+    //update
     public function update($dados)
     {
         if (
@@ -50,6 +52,8 @@ class ClienteController
             echo "<script>alert('Alguns campos não foram informados, tente novamente')</script>";
         }
     }
+
+    //delete
     public function remove($id)
     {
         $objModel = $this->model::find($id);
@@ -62,12 +66,15 @@ class ClienteController
             echo "<script>window.location='ClienteListarView.php'</script>"; //ClienteListarView
         }
     }
+
+    //select
     public function search($dados)
     {
         $result = $this->model::search($dados);
 
         return $result;
     }
+
     public function find($dados){
 
         $result = $this->model::find($dados);

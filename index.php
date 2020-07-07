@@ -7,6 +7,7 @@
 </head>
 <body>
     <?php
+    //escolha de para qual tela seguir
     echo "
     <table class='table'>
         <tr>
@@ -18,7 +19,7 @@
     </table>";
     ?>
 </body>
-
+    <!-- estilo css -->
 <style>
     body{
         background-color: #CCC;

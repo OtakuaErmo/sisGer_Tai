@@ -1,10 +1,10 @@
 <?php
-// inclui o arquivo BD.php dentro deste arquivo 
-//para que seus metodos fiquem visiveis
+
+//include
 include '../../control/LocacaoController.php';
 include '../../model/VeiculoModel.php';
 include '../../model/ClienteModel.php';
-include '../../lib/util.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -18,94 +18,77 @@ include '../../lib/util.php';
 </head>
 
 <body>
-<div class='center'>
-    <?php
+    <div class='center'>
+        <?php
 
-    $objLocacaoController = new LocacaoController();
+        $objLocacaoController = new LocacaoController();
 
+        if (!empty($_POST)) {
 
-    //verificando se o locador e maior de idade
-/*    
-   if(!empty($_POST)){
-    $limite = date_create('2002-07-07'); 
-    $objCliente = $objClienteModel::find($_POST['cliente_id']);
-    $nasceu = $objCliente->data_nascimento;
-    $dataFormatada = date_create_from_format('Y-m-d', $nasceu);
-    echo date_format($dataFormatada, 'Y-m-d');
-    if($dataFormatada < $limite){
-        
+            $objLocacaoController->create($_POST);
 
-    }
-}
-*/
-    if (!empty($_POST)) {
+        }
 
-        $objLocacaoController->create($_POST);
+        $objClienteModel = new ClienteModel();
+        $resultCliente =  $objClienteModel::selectAll();
 
-    }  
+        $objVeiculoModel = new VeiculoModel();
+        $resultVeiculo =  $objVeiculoModel::selectAll();
 
-    
-    $objClienteModel = new ClienteModel();
-    $resultCliente =  $objClienteModel::selectAll();
+        ?>
 
+        <!-- propriedade action faz a chamada do BD.php para pegar o valor do form
+            o restante e um formulario comum usando o metodo POST
+        -->
+        <form action="formLocacaoView.php" method="POST">
 
-    $objVeiculoModel = new VeiculoModel();
-    $resultVeiculo =  $objVeiculoModel::selectAll();
+            <label>Cliente</label>
+            <select name="cliente_id">
+                <?php
+                //listagem dos clientes
+                foreach ($resultCliente as $itens) {
+                        echo "<option value='" . $itens['id'] . "'>" . $itens['nome'] . "</option>";
+                }
+                ?>
+            </select>
+            <br>
+            <label>Veiculo</label>
+            <select name="veiculo_id">
+                <?php
+                //listagem dos veiculos
+                foreach ($resultVeiculo as $itens) {
+                    echo "<option value='" . $itens['id'] . "'>" . $itens['modelo'] . "</option>";
+                }
+                ?>
+            </select><br>
 
-    ?>
+            <label>data-retirada</label>
+            <input type="date" name="data_retirada"> <br>
 
-    <!-- propriedade action faz a chamada do BD.php para pegar o valor do form
-        o restante e um formulario comum usando o metodo POST
-    -->
-    <form action="formLocacaoView.php" method="POST">
+            <label>hora-retirada</label>
+            <input type="time" name="hora_retirada"> <br>
 
-        <label>Cliente</label>
-        <select name="cliente_id">
-            <?php
-            //listagem dos municipios
+            <label>data-devolucao</label>
+            <input type="date" name="data_devolucao"> <br>
 
-            foreach ($resultCliente as $itens) {
-                    echo "<option value='" . $itens['id'] . "'>" . $itens['nome'] . "</option>";
-            }
-            ?>
-        </select>
-        <br>
-        <label>Veiculo</label>
-        <select name="veiculo_id">
-            <?php
-            //listagem dos municipios
-            foreach ($resultVeiculo as $itens) {
-                echo "<option value='" . $itens['id'] . "'>" . $itens['modelo'] . "</option>";
-            }
-            ?>
-        </select><br>
+            <label>hora-devolucao</label>
+            <input type="time" name="hora_devolucao"> <br>
 
-        <label>data-retirada</label>
-        <input type="date" name="data_retirada"> <br>
-
-        <label>hora-retirada</label>
-        <input type="time" name="hora_retirada"> <br>
-
-        <label>data-devolucao</label>
-        <input type="date" name="data_devolucao"> <br>
-
-        <label>hora-devolucao</label>
-        <input type="time" name="hora_devolucao"> <br>
-
-
-        <input type="submit" value="Enviar">
-    </form>
-    <a href="listarLocacaoView.php"><button>Voltar</button></a>
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="listarLocacaoView.php"><button>Voltar</button></a>
     </div>
 </body>
-<style>
-    body{
-        background-color: #CCC;
-    }
-    .center{
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 0);  
-    } 
-</style>
+    <!-- css -->
+    <style>
+        body{
+            background-color: #CCC;
+        }
+        .center{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);  
+        } 
+    </style>
+
 </html>

@@ -1,4 +1,5 @@
 <?php
+    //informacoes para acessar o banco de dados
 class Config
 {
     const BD_TIPO = "mysql";
@@ -9,3 +10,4 @@ class Config
     const BD_SENHA = "";
     const BD_CHARSET = "utf8mb4";
 }  
+?>

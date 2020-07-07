@@ -19,6 +19,7 @@ class LocacaoController
         return $objeto;
     }
 
+    //insert
     public function create($dados)
     {
 
@@ -27,26 +28,18 @@ class LocacaoController
             !empty($dados['data_retirada']) &&  !empty($dados['hora_retirada']) &&
             !empty($dados['data_devolucao']) && !empty($dados['hora_devolucao'])
         ) {
-
-            $objClienteModel = new ClienteModel();
-            $objCliente = $objClienteModel::find($dados['cliente_id']);
-            $dataFormatada = date_create_from_format('Y-m-d', $objCliente->data_nascimento);
-            $dataLimite = date_create();
-            $intervalo = $dataFormatada->diff($dataLimite);
-
-            if($intervalo->y >= 18){
                   
             $this->model::insert($dados);
 
             echo "<script>alert('Registro inserido com sucesso!')</script>";
             echo "<script>window.location='listarLocacaoView.php'</script>";
-            }
-
 
         } else {
             echo "<script>alert('Alguns campos não foram informados, tente novamente')</script>";
         }
     }
+
+    //update
     public function update($dados)
     {
         if (
@@ -61,6 +54,8 @@ class LocacaoController
             echo "<script>alert('Alguns campos não foram informados, tente novamente')</script>";
         }
     }
+
+    //delete
     public function remove($id)
     {
         $objModel = $this->model::find($id);
@@ -73,12 +68,15 @@ class LocacaoController
             echo "<script>window.location='listarLocacaoView.php'</script>";
         }
     }
+
+    //select
     public function search($dados)
     {
         $result = $this->model::search($dados);
 
         return $result;
     }
+
     public function find($dados){
 
         $result = $this->model::find($dados);
