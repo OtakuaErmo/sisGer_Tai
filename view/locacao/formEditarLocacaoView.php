@@ -20,6 +20,7 @@ include '../../lib/util.php';
 </head>
 
 <body>
+<div class='center'>
     <?php
 
     $objLocacaoController = new LocacaoController();
@@ -96,10 +97,16 @@ include '../../lib/util.php';
        
     </form>
     <a href="listarLocacaoView.php"><button>Voltar</button></a>
+    </div>
 </body>
 <style>
     body{
         background-color: #CCC;
-    }   
+    }
+    .center{
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);  
+    } 
 </style>
 </html>

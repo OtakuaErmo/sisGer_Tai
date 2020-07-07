@@ -17,6 +17,7 @@ include '../../lib/util.php';
 </head>
 
 <body>
+<div class='center'>
     <?php
 
     $objClienteController = new ClienteController();
@@ -40,10 +41,16 @@ include '../../lib/util.php';
         <input type="submit" value="Deletar">
     </form>
     <a href="listarClienteView.php"><button>Cancelar</button></a>
+    </div>
 </body>
 <style>
     body{
         background-color: #CCC;
-    }   
+    }
+    .center{
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);  
+    } 
 </style>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 include '../../control/LocacaoController.php';
-include '../../model/ClienteModel.php';
+
 include '../../model/VeiculoModel.php';
 include '../../lib/util.php';
 
@@ -15,6 +15,7 @@ include '../../lib/util.php';
     <title>Locação</title>
 </head>
 <body>
+<div class='center'>
 <a href='../../index.php'><button>Tela Inicial</button></a></br>
 </br>
 
@@ -42,27 +43,32 @@ include '../../lib/util.php';
         //Faz a chamada do metodo selectAll para conecta com o Banco de Dados
         $result = $objLocacaoController->index();
     }
-    
-    $objClienteModel = new ClienteModel();
+
     $objVeiculoModel = new VeiculoModel();
+
+
     //monta uma tabela e lista os dados atraves do foreach
     echo "
 <table style=''>
 <tr>
-  <th>Cliente</th>
+  <th>ID</th>
   <th>Veículo</th>
+  <th>Cliente</th>
   <th>Dia-Retirada</th>
   <th>Hora-Retirada</th>
   <th>Data-Devolução</th>
   <th>Hora-Devolução</th>
   <th>Ação</th>
 </tr>";
-    foreach ($result as $item) {
-        $objVeiculo = $objVeiculoModel::find($item['veiculo_id']); 
+    foreach ($result as $item) {        
+
+        $objVeiculo = $objVeiculoModel::find($item['veiculo_id']);
+
         echo "
     <tr>
-      <td>" . $item['cliente_id'] . "</td>
-      <td>" . $objVeiculo->modelo  . "</td>
+      <td>" . $item['id']  . "</td>
+      <td>" . $objVeiculo->modelo . "</td>
+      <td>" . $item['cliente_id']  . "</td>
       <td>" . $item['data_retirada'] . "</td>
       <td>" . $item['hora_retirada'] . "</td>
       <td>" . $item['data_devolucao'] . "</td>
@@ -75,12 +81,17 @@ include '../../lib/util.php';
     echo "</table>";
 
     ?>
-
+</div>
 </body>
 <style>
     body{
         background-color: #CCC;
-    }   
+    }
+    .center{
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);  
+    } 
 </style>
 
 </html>

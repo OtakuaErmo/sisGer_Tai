@@ -15,6 +15,7 @@ include '../../lib/util.php';
     <title>Veículo</title>
 </head>
 <body>
+<div class='center'>
 <a href='../../index.php'><button>Tela Inicial</button></a></br>
 </br>
 
@@ -77,12 +78,18 @@ include '../../lib/util.php';
     echo "</table>";
 
     ?>
-
+</div>
 </body>
 <style>
     body{
         background-color: #CCC;
-    }   
+
+    }
+    .center{
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);  
+    } 
 </style>
 
 </html>

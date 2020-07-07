@@ -19,6 +19,7 @@ include '../../lib/util.php';
 </head>
 
 <body>
+<div class='center'>
     <?php
 
     $objVeiculoController = new VeiculoController();
@@ -63,10 +64,16 @@ include '../../lib/util.php';
         <input type="submit" value="Enviar">
     </form>
     <a href="listarVeiculoView.php"><button>Voltar</button></a>
+    </div>
 </body>
 <style>
     body{
         background-color: #CCC;
-    }   
+    }
+    .center{
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);  
+    } 
 </style>
 </html>
