@@ -20,7 +20,7 @@ include '../../lib/util.php';
 
     <!--    formulario com o botao para chamar o arquivo formCliente -->
     <form action="formVeiculoView.php" method="POST">
-        <label>Cadastrar Veiculo: </label>
+        <label>Cadastrar Veículo: </label>
         <input type="submit" value="Novo">
     </form></br>
     <form action="listarVeiculoView.php" method="POST">

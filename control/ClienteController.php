@@ -58,7 +58,7 @@ class ClienteController
         } else {
             $this->model::deletar($id);
             echo "<script>alert('Registro removido com sucesso!')</script>";
-            echo "<script>window.location='ClienteListarView.php'</script>";
+            echo "<script>window.location='ClienteListarView.php'</script>"; //ClienteListarView
         }
     }
     public function search($dados)
