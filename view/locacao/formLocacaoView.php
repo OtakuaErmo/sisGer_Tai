@@ -22,20 +22,35 @@ include '../../lib/util.php';
 
     $objLocacaoController = new LocacaoController();
 
+
+    //verificando se o locador e maior de idade
+/*    
+   if(!empty($_POST)){
+    $limite = date_create('2002-07-07'); 
+    $objCliente = $objClienteModel::find($_POST['cliente_id']);
+    $nasceu = $objCliente->data_nascimento;
+    $dataFormatada = date_create_from_format('Y-m-d', $nasceu);
+    echo date_format($dataFormatada, 'Y-m-d');
+    if($dataFormatada < $limite){
+        
+
+    }
+}
+*/
     if (!empty($_POST)) {
-        //chama o metodo INSERT recebendo os dados do usuário através do metodo $_POST
+
         $objLocacaoController->create($_POST);
+
     }  
 
+    
     $objClienteModel = new ClienteModel();
     $resultCliente =  $objClienteModel::selectAll();
 
+
     $objVeiculoModel = new VeiculoModel();
     $resultVeiculo =  $objVeiculoModel::selectAll();
-   //         $date = new DateTime($itens['data_nascimento']);
-   //         $date->sub(new DateInterval('P18Y'));
 
-   
     ?>
 
     <!-- propriedade action faz a chamada do BD.php para pegar o valor do form
@@ -46,12 +61,10 @@ include '../../lib/util.php';
         <label>Cliente</label>
         <select name="cliente_id">
             <?php
-
             //listagem dos municipios
+
             foreach ($resultCliente as $itens) {
-
-                echo "<option value='" . $itens['id'] . "'>" . $itens['nome'] . "</option>";
-
+                    echo "<option value='" . $itens['id'] . "'>" . $itens['nome'] . "</option>";
             }
             ?>
         </select>

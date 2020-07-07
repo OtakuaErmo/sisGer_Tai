@@ -170,4 +170,5 @@ class Model
         //retorna a execução no formato de um objeto
         return $stmt;
     }
+
 }

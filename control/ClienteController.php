@@ -27,6 +27,7 @@ class ClienteController
             !empty($dados['municipio_id']) && !empty($dados['data_nascimento'])
         ) {
 
+
             $this->model::insert($dados);
 
             echo "<script>alert('Registro inserido com sucesso!')</script>";

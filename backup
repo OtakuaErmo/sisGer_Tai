@@ -1,0 +1,54 @@
+<?php
+
+    $objLocacaoController = new LocacaoController();
+    //verificando se o locador e maior de idade>
+    
+   
+    
+
+/* 
+    foreach ($resultCliente as $item) {
+        echo $item['data_nascimento'];
+    }
+    
+
+    
+  $today = date_create('2020-07-07');
+    
+    $DateNascimento = $objCliente->data_nascimento;
+    echo $DateNascimento->format('Y-m-d');
+        exit;
+    $intervalo = $today->diff($datadeNascimento);
+    echo $intervalo->y;
+  */        
+    $limite = date_create('2002-07-07'); 
+            $objClienteModel = new ClienteModel();
+    /*        if(!empty($_POST)){
+        $objCliente = $objClienteModel::find($_POST['cliente_id']);
+        $nasceu = $objCliente->data_nascimento;
+            }
+*/
+    if (!empty($_POST)) {
+        //chama o metodo INSERT recebendo os dados do usuário através do metodo $_POST
+//        $objCliente = $objClienteModel::find($item['cliente_id']);
+ //       $objCliente->data_nascimento;
+
+    //    var_dump($_POST);
+        $objLocacaoController->create($_POST);
+        
+   //     if ($nasceu < $limite){
+                
+   //     } else {
+              //         header("Location: listarLocacaoView.php");
+   //     }
+
+        
+    }  
+
+   
+    $resultCliente =  $objClienteModel::selectAll();
+
+    $objVeiculoModel = new VeiculoModel();
+    $resultVeiculo =  $objVeiculoModel::selectAll();
+
+    ?>

@@ -1,6 +1,7 @@
 <?php
 include '../../model/LocacaoModel.php';
 
+
 class LocacaoController
 {
 
@@ -26,11 +27,22 @@ class LocacaoController
             !empty($dados['data_retirada']) &&  !empty($dados['hora_retirada']) &&
             !empty($dados['data_devolucao']) && !empty($dados['hora_devolucao'])
         ) {
+     /*
+            $objClienteModel = new ClienteModel();
+            $objCliente = $objClienteModel::find($dados['cliente_id']);
+           $dataFormatada = date_create_from_format('Y-m-d', $objCliente->data_nascimento);
+            $dataLimite = date_create(2002-07-07);
+         $intervalo = $dataFormatada->diff($dataLimite);
 
+            if($dataFormatada <= $dataLimite){
+                
+            }
+            */
             $this->model::insert($dados);
 
             echo "<script>alert('Registro inserido com sucesso!')</script>";
             echo "<script>window.location='listarLocacaoView.php'</script>";
+
         } else {
             echo "<script>alert('Alguns campos não foram informados, tente novamente')</script>";
         }
